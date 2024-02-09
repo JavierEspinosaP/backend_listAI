@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const CHATGPT_API_URL = 'https://api.openai.com/v1/chat/completions'; // URL de la API de ChatGPT
-const OPENAI_API_KEY = 'tu_api_key'; // Reemplaza con tu clave API de OpenAI
+const OPENAI_API_KEY = process.env.OPENAI_APIKEY; // Reemplaza con tu clave API de OpenAI
 
 export const getSongsFromChatGPT = async (text: string): Promise<string[]> => {
   try {
@@ -12,8 +12,7 @@ export const getSongsFromChatGPT = async (text: string): Promise<string[]> => {
         messages: [
           {
             role: 'user',
-            content: `Basado en el siguiente texto: '${text}', por favor genera una lista de 20 canciones que encajen con su sentimiento, interpretación o significado,
-            el formato de respuesta debe ser el siguiente, no debe haber nada más en la respuesta: "Cancion - Autor, cancion - autor...`
+            content: `Basado en el siguiente texto: ${text}, por favor genera una lista de 20 canciones que encajen con su sentimiento, interpretación o significado, no bases la elección simplemente en las palabras que contenga la frase, el formato de respuesta debe ser el siguiente, no debe haber nada más en la respuesta: "Canción - Autor, Canción - Autor...`
           }
         ]
       },
@@ -37,20 +36,13 @@ export const getSongsFromChatGPT = async (text: string): Promise<string[]> => {
 };
 
 const extractSongsFromResponse = (response: string): string[] => {
-    const songList = [];
-    const lines = response.split('\n'); // Divide la respuesta en líneas
-  
-    for (let line of lines) {
-      const trimmedLine = line.trim();
-  
-      if (trimmedLine) {
-        // Busca un patrón para identificar los nombres de las canciones
-        // Esto depende de cómo ChatGPT formatea la lista
-        // Por ejemplo, si cada línea es una canción:
-        songList.push(trimmedLine);
-      }
-    }
-  
-    return songList;
-  };
+  // Elimina las comillas al principio y al final, si las hay
+  const cleanedResponse = response.replace(/^"|"$/g, '');
+
+  // Divide la respuesta por comas para obtener cada canción
+  const songs = cleanedResponse.split(',').map(song => song.trim());
+
+  return songs;
+};
+
   
