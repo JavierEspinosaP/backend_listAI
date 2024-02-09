@@ -12,7 +12,7 @@ export const getSongsFromChatGPT = async (text: string): Promise<string[]> => {
         messages: [
           {
             role: 'user',
-            content: `Basado en el siguiente texto: ${text}, por favor genera una lista de 20 canciones que encajen con su sentimiento, interpretación o significado, ten muy en cuenta la sensación que transmite la frase para elegir correctamente las canciones, no bases la elección simplemente en las palabras que contenga la frase, es mas importante la emoción, y que todas las canciones tengan sentido entre sí, que tengan la misma fuerza, el formato de respuesta debe ser el siguiente, no debe haber nada más en la respuesta: "Canción - Autor, Canción - Autor...`
+            content: `Basado en el siguiente texto: ${text}, por favor genera una lista de 20 canciones que encajen con su sentimiento, interpretación o significado, no bases la elección simplemente en las palabras que contenga la frase, el formato de respuesta debe ser el siguiente, no debe haber nada más en la respuesta: "Canción - Autor, Canción - Autor...`
           }
         ]
       },
