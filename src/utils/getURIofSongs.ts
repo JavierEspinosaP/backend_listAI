@@ -26,7 +26,6 @@ export const getURIofSongs = async (songs: string[], accessToken: string): Promi
 
     for (const song of songs) {
         const { track, artist } = splitSongAndArtist(song);
-        // const query = `artist%3A${encodeURIComponent(artist)}+track%3A${encodeURIComponent(track)}`;
         const query = generateQuery(artist, track)
         
         try {
@@ -46,12 +45,3 @@ export const getURIofSongs = async (songs: string[], accessToken: string): Promi
 
     return uris;
 }
-
-// Ejemplo de uso de la función.
-const accessToken = 'tu_token_de_acceso'; // Reemplaza esto con tu token de acceso real
-const songsToSearch = [
-    "Island in the Sun - Weezer",
-    "Lovely Day - Bill Withers",
-    "Three Little Birds - Bob Marley",
-    "Soak Up the Sun - Sheryl Crow"
-];

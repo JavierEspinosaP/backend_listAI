@@ -1,23 +1,14 @@
 import express from 'express';
-
 import dotenv from 'dotenv';
+import cors from 'cors'; 
+import mainRoutes from './routes/mainRoute'
 
 dotenv.config();
 
 const app = express();
-const port = 3000; // Puedes elegir el puerto que prefieras
+const port = 3000;
 
-
-import mainRoutes from './routes/mainRoute'
-// import authRoutes from './routes/authRoutes'
-
-
-app.get('/', (req, res) => {
-  res.send('Hola Mundo!');
-});
-
-// app.use('/', authRoutes)
-
+app.use(cors());
 
 app.use('/', mainRoutes)
 
