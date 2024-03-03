@@ -9,6 +9,12 @@ function splitSongAndArtist(song: string): { track: string, artist: string } {
 }
 
 function generateQuery(artist: string, track: string) {
+    // Asegura que artist no sea undefined antes de intentar realizar el replace
+    if (typeof artist === 'undefined' || typeof track === 'undefined') {
+        console.error('Artist or track is undefined, check the input data');
+        return ''; // Retorna una cadena vacía o maneja este caso como mejor te parezca
+    }
+    
     // Elimina los puntos finales en el nombre del artista
     artist = artist.replace(/\.$/, '');
 
@@ -26,8 +32,13 @@ export const getURIofSongs = async (songs: string[], accessToken: string): Promi
 
     for (const song of songs) {
         const { track, artist } = splitSongAndArtist(song);
-        const query = generateQuery(artist, track)
+        const query = generateQuery(artist, track);
         
+        if (!query) {
+            console.error(`Skipping song due to missing data: ${song}`);
+            continue; // O maneja este caso como prefieras, pero aquí se continúa con el siguiente elemento.
+        }
+
         try {
             const response = await axios.get(`${BASE_URL}?q=${query}&type=track&limit=1`, {
                 headers: {
@@ -37,6 +48,9 @@ export const getURIofSongs = async (songs: string[], accessToken: string): Promi
 
             if (response.data.tracks.items.length > 0) {
                 uris.push(response.data.tracks.items[0].uri);
+            } else {
+                console.log(`No se encontró la canción: ${song}`);
+                // Aquí puedes decidir si quieres hacer algo cuando no se encuentra la canción.
             }
         } catch (error) {
             console.error(`Error al buscar la canción ${song}:`, error);
