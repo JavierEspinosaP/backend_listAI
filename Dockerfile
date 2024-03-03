@@ -21,6 +21,7 @@ FROM node:16-slim
 
 WORKDIR /usr/src/app
 
+
 # Copiar solo las dependencias necesarias para la ejecución
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/dist ./dist
