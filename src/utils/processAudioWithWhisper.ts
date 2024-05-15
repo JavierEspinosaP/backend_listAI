@@ -24,6 +24,8 @@ export const processAudioWithWhisper = async (audioBuffer: Buffer): Promise<stri
       }
     });
 
+    console.log(response.data.text);
+    
     // Procesar y devolver la respuesta
     return response.data.text; // Ajusta esto según la estructura exacta de la respuesta
   } catch (error) {
