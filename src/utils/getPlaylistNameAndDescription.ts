@@ -18,7 +18,7 @@ export const getPlaylistNameAndDescription = async (text: string): Promise<strin
         },
         {
           headers: {
-            'Authorization': `Bearer ${OPENAI_API_KEY}`,
+            'Authorization': `Bearer ${process.env.OPENAI_APIKEY}`,
             'Content-Type': 'application/json'
           }
         }

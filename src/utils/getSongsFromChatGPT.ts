@@ -8,7 +8,7 @@ export const getSongsFromChatGPT = async (text: string): Promise<string[]> => {
     const response = await axios.post(
       CHATGPT_API_URL,
       {
-        model: 'gpt-4', // o el modelo que desees utilizar
+        model: 'gpt-4o', // o el modelo que desees utilizar
         messages: [
           {
             role: 'user',
@@ -18,7 +18,7 @@ export const getSongsFromChatGPT = async (text: string): Promise<string[]> => {
       },
       {
         headers: {
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
+          'Authorization': `Bearer ${process.env.OPENAI_APIKEY}`,
           'Content-Type': 'application/json'
         }
       }
