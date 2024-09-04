@@ -26,8 +26,10 @@ const getAudioDuration = (audioBuffer: Buffer): Promise<number> => {
         resolve(duration);
       }
 
-      // Eliminar el archivo temporal después de obtener la duración
-      fs.unlinkSync(tempFilePath);
+      // Verificar si el archivo temporal aún existe antes de eliminarlo
+      if (fs.existsSync(tempFilePath)) {
+        fs.unlinkSync(tempFilePath);
+      }
     });
   });
 };
