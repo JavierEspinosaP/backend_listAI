@@ -8,11 +8,11 @@ export const getSongsFromChatGPT = async (text: string): Promise<string[]> => {
     const response = await axios.post(
       CHATGPT_API_URL,
       {
-        model: 'gpt-4o', // o el modelo que desees utilizar
+        model: 'gpt-4o',
         messages: [
           {
             role: 'user',
-            content: `Basado en el siguiente texto: ${text}, por favor genera una lista de 20 canciones que encajen con su sentimiento, interpretación o significado, no bases la elección simplemente en las palabras que contenga la frase, el formato de respuesta debe ser el siguiente, no debe haber nada más en la respuesta: "Canción - Autor, Canción - Autor...`
+            content: `Basado en el siguiente texto: ${text}, genera una lista de 20 canciones que encajen con su sentimiento, interpretación o significado, no bases la elección simplemente en las palabras que contenga la frase, el formato de respuesta debe ser el siguiente, no debe haber nada más en la respuesta: "Canción - Autor, Canción - Autor...`
           }
         ]
       },

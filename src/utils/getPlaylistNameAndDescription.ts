@@ -8,11 +8,11 @@ export const getPlaylistNameAndDescription = async (text: string): Promise<strin
       const response = await axios.post(
         CHATGPT_API_URL,
         {
-          model: 'gpt-3.5-turbo', // o el modelo que desees utilizar
+          model: 'gpt-3.5-turbo', 
           messages: [
             {
               role: 'user',
-              content: `Basado en el siguiente texto: ${text}, por favor genera un título y una descripción original pero simple para una lista de reproducción de Spotify, no hables sobre las canciones que la componen ya que no las sabes, el formato debe ser convertible a JSON con la siguiente estructura: {"titulo": "titulo de la playlist", "descripcion": "descripcion de la playlist"}`
+              content: `Basado en el siguiente texto: ${text}, genera un título y una descripción original pero simple para una lista de reproducción de Spotify, no hables sobre las canciones que la componen, el formato debe ser convertible a JSON con la siguiente estructura: {"titulo": "titulo de la playlist", "descripcion": "descripcion de la playlist"}`
             }
           ]
         },
