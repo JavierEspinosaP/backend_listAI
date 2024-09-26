@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-const CHATGPT_API_URL = 'https://api.openai.com/v1/chat/completions'; // URL de la API de ChatGPT
-const OPENAI_API_KEY = process.env.OPENAI_APIKEY; // Reemplaza con tu clave API de OpenAI
+const CHATGPT_API_URL = 'https://api.openai.com/v1/chat/completions';
 
 export const getPlaylistNameAndDescription = async (text: string): Promise<string[]> => {
     try {
       const response = await axios.post(
         CHATGPT_API_URL,
         {
-          model: 'gpt-3.5-turbo', 
+          model: 'gpt-4o-mini', 
           messages: [
             {
               role: 'user',

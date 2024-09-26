@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const client_id = process.env.CLIENT_ID; // Reemplaza con tu Client ID de Spotify
-const client_secret = process.env.CLIENT_SECRET; // Reemplaza con tu Client Secret de Spotify
+const client_id = process.env.CLIENT_ID; 
+const client_secret = process.env.CLIENT_SECRET;
 
 export const getAccessToken = async(): Promise<any> => {
   const params = new URLSearchParams({

@@ -36,7 +36,7 @@ export const getURIofSongs = async (songs: string[], accessToken: string): Promi
         
         if (!query) {
             console.error(`Skipping song due to missing data: ${song}`);
-            continue; // O maneja este caso como prefieras, pero aquí se continúa con el siguiente elemento.
+            continue; 
         }
 
         try {
@@ -50,7 +50,6 @@ export const getURIofSongs = async (songs: string[], accessToken: string): Promi
                 uris.push(response.data.tracks.items[0].uri);
             } else {
                 console.log(`No se encontró la canción: ${song}`);
-                // Aquí puedes decidir si quieres hacer algo cuando no se encuentra la canción.
             }
         } catch (error) {
             console.error(`Error al buscar la canción ${song}:`, error);

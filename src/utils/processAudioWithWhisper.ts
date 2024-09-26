@@ -20,12 +20,12 @@ export const processAudioWithWhisper = async (audioBuffer: Buffer): Promise<stri
         ...formData.getHeaders() // Encabezados necesarios para el envío de FormData
       },
       params: {
-        'response_format': 'text' // Formato de respuesta deseado
+        'response_format': 'text' 
       }
     });
 
     // Procesar y devolver la respuesta
-    return response.data.text; // Ajusta esto según la estructura exacta de la respuesta
+    return response.data.text; 
   } catch (error) {
     console.error('Error al procesar el audio con Whisper:', error);
     throw error;
